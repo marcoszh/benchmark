@@ -329,7 +329,10 @@ def run_shark_benchmark(opts):
     def convert_to_cached(query):
       return (make_output_cached(make_input_cached(query[0])), )
 
-    local_query_map = {k: convert_to_cached(v) for k, v in QUERY_MAP.items()}
+    #local_query_map = {k: convert_to_cached(v) for k, v in QUERY_MAP.items()}
+    local_query_map = {}
+    for k, v in QUERY_MAP.items():
+      local_query_map[k] = convert_to_cached(v)
 
     # Set up cached tables
     if '4' in opts.query_num:
@@ -353,7 +356,9 @@ def run_shark_benchmark(opts):
 
   if '4' not in opts.query_num:
     query_list += local_clean_query
-  query_list += local_query_map[opts.query_num][0]
+  query_list += 
+
+[opts.query_num][0]
 
   query_list = re.sub("\s\s+", " ", query_list.replace('\n', ' '))
 
